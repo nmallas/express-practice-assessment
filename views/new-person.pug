@@ -23,7 +23,7 @@ html(lang="en")
             div
                 label(for="hairColorId") Hair Color
                 select(name="hairColorId" required)
-                    each hairColor in hairColorData
+                    each hairColor in hairColors
                         option(value=hairColor.id, name=hairColor.color)=hairColor.color
             div
                 button(type="submit") Submit

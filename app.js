@@ -37,23 +37,21 @@ app.get("/", async (req, res) => {
 
     personArray.push(dude);
   }
-  console.log(personArray);
   res.render("index", {personArray})
 });
 
 app.get("/new-person", csurfProtection, async (req, res) => {
-  let haircolors = await models.HairColor.findAll();
-  let hairColorData = [];
-  for(let haircolor of haircolors) {
-    let hairColorsData = {};
-    hairColorsData["id"] = haircolor.dataValues.id
-    hairColorsData["color"] = haircolor.dataValues.color;
-    hairColorData.push(hairColorsData);
-  }
-  res.render("new-person", {hairColorData, csrfToken: req.csrfToken()});
+  let hairColors = await models.HairColor.findAll();
+  // for(let haircolor of haircolors) {
+  //   let hairColorsData = {};
+  //   hairColorsData["id"] = haircolor.dataValues.id
+  //   hairColorsData["color"] = haircolor.dataValues.color;
+  //   hairColorData.push(hairColorsData);
+  // }
+  res.render("new-person", {hairColors, csrfToken: req.csrfToken()});
 });
 
-app.post("/new-person", async (req, res) => {
+app.post("/new-person", csurfProtection, async (req, res, next) => {
   try{
     await models.People.create({
       firstName: req.body.firstName,
@@ -70,7 +68,7 @@ app.post("/new-person", async (req, res) => {
     if(!req.body.firstName || !req.body.lastName || !req.body.hairColorId) {
       res.status(500).end()
     }
-
+    // next(err);
   }
 
 })
