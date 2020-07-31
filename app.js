@@ -21,8 +21,24 @@ app.use(decoded);
 
 app.set("view engine", "pug");
 
-app.get("/", (req, res) => {
-  res.send("hello");
+app.get("/", async (req, res) => {
+  let people = await models.People.findAll({
+    include: models.HairColor
+  })
+  let personArray = [];
+  for(let person of people) {
+    let dude = {
+      firstName: person.dataValues.firstName,
+      lastName: person.dataValues.lastName,
+      age: person.dataValues.age,
+      biography: person.dataValues.biography,
+      hairColor: person.dataValues.HairColor.dataValues.color
+    }
+
+    personArray.push(dude);
+  }
+  console.log(personArray);
+  res.render("index", {personArray})
 });
 
 app.get("/new-person", csurfProtection, async (req, res) => {
