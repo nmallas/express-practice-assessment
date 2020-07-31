@@ -1,4 +1,4 @@
-# Express Application Practice Assessment
+ # Express Application Practice Assessment
 
 **Note:** To read this in a rendered view, open your VS Code Command Palatte
 (using Control+Shift+P on Windows, Command+Shift+P on macOS) and choose
@@ -56,24 +56,24 @@ your development database.
 
 Run your tests with `npm test`. You can run `npm test test/test-file-name.js`
 to run the tests for a specific part of the assessment.
-  - Example: To only run the test `01-form-page.js` do, 
+  - Example: To only run the test `01-form-page.js` do,
     `npm test test/01-form-page.js`
 
 If you get tired of seeing all of the Sequelize failures, you can try running:
 
 ```
 npm test 2> /dev/null
-``` 
+```
 
 That should redirect the annoying messages into oblivion but leave the
 mocha output available for you to read. This may prevent you from seeing other
-errors, though, so make sure to run it without the `2> /dev/null` if you're 
+errors, though, so make sure to run it without the `2> /dev/null` if you're
 trying to get a test to pass and need to see error output.
 
 ## App Requirements
 
 These are the requirements for the application. Follow them closely. The tests
-will attempt to read data from your rendered HTML. 
+will attempt to read data from your rendered HTML.
 
 Read all of the requirements. Determine the data needed to include in your data
 model.
@@ -103,17 +103,17 @@ your `config/config.json` file:
 }
 ```
 
-Remove `logging: false` if you want to see SQL output in your terminal when 
-running tests with `npm test`. 
+Remove `logging: false` if you want to see SQL output in your terminal when
+running tests with `npm test`.
 
 Create the `development` database with those configurations.
 
 For this assessment, the tests will be using your `development` database
 configuration defined in the `config.json` file. **The tests will not be
 testing your database explicitly, but test specs DO rely on you setting up the
-database AND database constraints properly.** 
+database AND database constraints properly.**
 
-You will need to generate and run the migrations, models, and seeders. There is 
+You will need to generate and run the migrations, models, and seeders. There is
 no need to run `npm test` until after doing this.
 
 ### The data model
@@ -126,8 +126,8 @@ Generate a model (and migration) for the "HairColor" model with the attributes:
 |----------------|----------------|----------------------|
 | color          | string         | unique, not nullable |
 
-- the "color" column will hold values up to 20 characters in length and 
-  will not allow `NULL`s 
+- the "color" column will hold values up to 20 characters in length and
+  will not allow `NULL`s
 
 Generate a model (and migration) for the "People" model with the attributes:
 
@@ -141,9 +141,9 @@ Generate a model (and migration) for the "People" model with the attributes:
 
 Configure the migration so that:
 
-- the "firstName" column will hold values up to 50 characters in length and 
-  will not allow `NULL`s 
-- the "lastName" column will hold values up to 50 characters in length and 
+- the "firstName" column will hold values up to 50 characters in length and
+  will not allow `NULL`s
+- the "lastName" column will hold values up to 50 characters in length and
   will not allow `NULL`s
 - the "hairColorId" will not allow `NULL`s and references the "HairColors"
   table
